@@ -3,6 +3,7 @@ import { Modal } from "@mui/material"
 import type { AppDispatch, RootState } from "../../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { closeLogInModal, openLogInModal } from "../../redux/slices/modalSlice"
+import { signInUser } from "../../redux/slices/userSlcie"
 import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline"
 import { useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
@@ -19,11 +20,27 @@ export const LogInModal= () => {
   const dispatch: AppDispatch = useDispatch()
 
    async function handleLogin(){
-    await signInWithEmailAndPassword(auth ,email, password)
+    const userCredentials = await signInWithEmailAndPassword(auth ,email, password)
+    const { user } = userCredentials
+    dispatch(signInUser({
+      name: user.displayName ?? user.email?.split("@")[0] ?? "",
+      username: user.email?.split("@")[0] ?? "",
+      email: user.email ?? "",
+      uid: user.uid
+    }))
+    dispatch(closeLogInModal())
    }
 
    async function handleGuestLogIn(){
-    await signInWithEmailAndPassword(auth, "guest12345@gmail.com", "12345678")
+    const userCredentials = await signInWithEmailAndPassword(auth, "guest12345@gmail.com", "12345678")
+    const { user } = userCredentials
+    dispatch(signInUser({
+      name: user.displayName ?? user.email?.split("@")[0] ?? "",
+      username: user.email?.split("@")[0] ?? "",
+      email: user.email ?? "",
+      uid: user.uid
+    }))
+    dispatch(closeLogInModal())
    }
 
   return (
