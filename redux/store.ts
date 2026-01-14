@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import modalSlice from "./slices/modalSlice"
 import userSlice from "./slices/userSlcie"
+import navigationSlice from "./slices/navigationSlice"
 
 export const store = configureStore({
   reducer: {
     modals: modalSlice,
-    user: userSlice
+    user: userSlice,
+    navigation: navigationSlice
   },
 })
 

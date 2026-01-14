@@ -33,7 +33,7 @@ export const SignUpModal = () => {
 
     const emailValue = userCredentials.user.email ?? "";
     const username = emailValue ? emailValue.split("@")[0] : "";
-    const displayName = userCredentials.user.displayName ?? name || username;
+    const displayName = (userCredentials.user.displayName ?? name) || username;
 
     dispatch(signInUser({
       name: displayName,
