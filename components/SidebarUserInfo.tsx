@@ -1,11 +1,11 @@
 "use client"
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux"
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { signOutUser } from "../redux/slices/userSlcie";
 import type { AppDispatch, RootState } from "../redux/store";
 import { closeLogInModal, closeSignUpModal } from "../redux/slices/modalSlice";
-import { StoreProvider } from "../redux/StoreProvider";
 
 export const SidebarUserInfo = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -27,10 +27,12 @@ export const SidebarUserInfo = () => {
 
     onClick={()=>handleSignOut()}
     >
-     <img
-     src={'/assets/Bondr.jpg'} width={44} height={44}
+     <Image
+     src="/assets/Bondr.jpg"
+     width={44}
+     height={44}
      alt="Profile picture"
-     className='w-11 h-11 rounded-full'
+     className="w-11 h-11 rounded-full"
      />
      
      <div className='hidden xl:flex flex-col text-sm max-w-40'>

@@ -4,8 +4,8 @@ import type { AppDispatch, RootState } from "../../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { closeSignUpModal, openSignUpModal } from "../../redux/slices/modalSlice"
 import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline"
-import { useEffect, useState } from "react"
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { useState } from "react"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
 import {auth} from "../../firebase"
 import { signInUser } from "../../redux/slices/userSlcie" 
 
@@ -27,43 +27,40 @@ export const SignUpModal = () => {
       password 
     );
 
-    console.log(userCredentials);
-
     await updateProfile(userCredentials.user,{
       displayName:name
     });
 
+    const emailValue = userCredentials.user.email ?? "";
+    const username = emailValue ? emailValue.split("@")[0] : "";
+    const displayName = userCredentials.user.displayName ?? name || username;
+
     dispatch(signInUser({
-      name: userCredentials.user.displayName,
-      username:userCredentials.user.email!.split("@")[0],
-      email:userCredentials.user.email,
-      uid:userCredentials.user.uid
+      name: displayName,
+      username,
+      email: emailValue,
+      uid: userCredentials.user.uid
     }))
 
   }
 
   async function handleGuestLogIn(){
-    await signInWithEmailAndPassword(auth, "guest12345@gmail.com", "12345678")
+    const userCredentials = await signInWithEmailAndPassword(
+      auth,
+      "guest12345@gmail.com",
+      "12345678"
+    );
+    const { user } = userCredentials;
+    const emailValue = user.email ?? "";
+    const username = emailValue ? emailValue.split("@")[0] : "";
+
+    dispatch(signInUser({
+      name: user.displayName ?? username,
+      username,
+      email: emailValue,
+      uid: user.uid
+    }))
    }
-
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
-      if(!currentUser) return
-
-      //handle redux Action
-      dispatch(signInUser(
-        {
-          name: currentUser.displayName,
-          username:currentUser.email!.split("@")[0],
-          email:currentUser.email,
-          uid:currentUser.uid
-
-        }
-      ))
-    })
-
-    return unsubscribe;
-  },[])
 
   return (
     <>

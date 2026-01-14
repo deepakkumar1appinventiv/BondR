@@ -1,4 +1,5 @@
 import { ArrowUpCircleIcon, ChartBarIcon, ChatBubbleOvalLeftEllipsisIcon, HeartIcon } from "@heroicons/react/24/outline"
+import Image from "next/image";
 import type { DocumentData, Timestamp } from "firebase/firestore";
 import { openCommentModal, setCommentDetails } from "../redux/slices/modalSlice";
 import { useDispatch } from "react-redux";
@@ -11,7 +12,6 @@ interface PostProps{
 
 export const Post = ({data,id}: PostProps) => {
   const dispatch = useDispatch()
-  console.log(data);
 
   return (
     <div className="border-b border-gray-100">
@@ -71,8 +71,8 @@ interface PostHeaderProps {
 export const PostHeader = ({ username, name, timestamp, text,replyTo }: PostHeaderProps) => {
   return (
     <div className="flex p-4  space-x-5">
-      <img
-        src="../assets/Bondr.jpg"
+      <Image
+        src="/assets/Bondr.jpg"
         alt="Profile Picture"
         width={44}
         height={44}

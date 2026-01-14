@@ -1,4 +1,5 @@
 import { EllipsisHorizontalIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
 
 
 export const Widgets = () => {
@@ -56,7 +57,13 @@ export const Widgets = () => {
 
         <div className="flex justify-between py-3">
         <div className="flex items-center space-x-3">
-          <img src="/assets/Bondr.jpg" alt="Profile Picture" width={56} height={56} className="rounded-full w-14 h-14" />
+          <Image
+            src="/assets/Bondr.jpg"
+            alt="Profile Picture"
+            width={56}
+            height={56}
+            className="rounded-full w-14 h-14"
+          />
           <div className="flex flex-col text-sm">
             <span className="font-bold text-sm">Rishabh Sharma</span>
             <span className="text-sm text-[#5536271]"> @RishabhSharma</span>
@@ -67,7 +74,13 @@ export const Widgets = () => {
         </div>
         <div className="flex justify-between py-3">
         <div className="flex items-center space-x-3">
-          <img src="/assets/Bondr.jpg" alt="Profile Picture" width={56} height={56} className="rounded-full w-14 h-14" />
+          <Image
+            src="/assets/Bondr.jpg"
+            alt="Profile Picture"
+            width={56}
+            height={56}
+            className="rounded-full w-14 h-14"
+          />
           <div className="flex flex-col text-sm">
             <span className="font-bold text-md">Jayant Tyagi</span>
             <span className="text-sm text-[#5536271]"> @JayantTyagi</span>
@@ -78,7 +91,13 @@ export const Widgets = () => {
         </div>
         <div className="flex justify-between py-3">
         <div className="flex items-center space-x-3">
-          <img src="/assets/Bondr.jpg" alt="Profile Picture" width={56} height={56} className="rounded-full w-14 h-14" />
+          <Image
+            src="/assets/Bondr.jpg"
+            alt="Profile Picture"
+            width={56}
+            height={56}
+            className="rounded-full w-14 h-14"
+          />
           <div className="flex flex-col text-sm">
             <span className="font-bold text-md">Yash Rajput</span>
             <span className="text-sm text-[#5536271]"> @YashRajput</span>

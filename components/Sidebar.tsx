@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   HomeIcon,
   MagnifyingGlassIcon,
@@ -18,12 +19,13 @@ export default function Sidebar() {
     <nav className=" h-screen hidden sm:flex flex-col sticky top-0 p-3 xl:mr-10">
       <div className="relative h-full flex flex-col items-start">
         <div className="flex w-full items-center gap-3 px-3 py-3">
-          <img
-            src={"./assets/Bondr.jpg"}
+          <Image
+            src="/assets/Bondr.jpg"
             width={44}
             height={44}
             alt="Logo"
             className="rounded-full"
+            priority
           />
           <span className="brand-text hidden xl:block text-2xl font-semibold tracking-wide">
             BondR

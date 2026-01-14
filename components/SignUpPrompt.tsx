@@ -5,10 +5,9 @@ import { SignUpModal } from "./modals/SignUpModal"
 import type { RootState } from "../redux/store"
 
 export const SignUpPrompt = () => {
-  const name = useSelector((state: RootState)=> state.user.name)
-  console.log(name)
+  const uid = useSelector((state: RootState)=> state.user.uid)
   return (
-    !name &&
+    !uid &&
     <div className="fixed w-full h-[80px] bg-sky-300 bottom-0 flex justify-center items-center space-x-5 lg:justify-between lg:px-20 lx:px-40 2xl">
 
         <div className="hidden md:flex flex-col text-white  ">

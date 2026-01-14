@@ -1,6 +1,7 @@
 "use client"
 
 import { CalendarIcon, ChartBarIcon, FaceSmileIcon,  MapPinIcon, PhotoIcon } from "@heroicons/react/24/outline"
+import Image from "next/image"
 import type { RootState } from "../redux/store"
 import { addDoc, arrayUnion, collection, doc, serverTimestamp, updateDoc } from "firebase/firestore"
 import { useState } from "react"
@@ -47,10 +48,11 @@ export default function PostInput  ({insideModal}:PostInputprops) {
 
   return (
     <div className="flex space-x-5 p-3 border-b border-gray-100">
-        <img src={insideModal?"/assents/Bondr.jpg": "/assets/Bondr.jpg" }
-        alt={insideModal? "profile picture": "Logo"} 
-        height={50} 
-        width={50} 
+        <Image
+        src="/assets/Bondr.jpg"
+        alt={insideModal ? "profile picture" : "Logo"}
+        height={44}
+        width={44}
         className="w-11 h-11"
         />
         <div className="w-full">
